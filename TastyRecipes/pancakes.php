@@ -14,10 +14,10 @@
 
     #If a comment has been deleted
     if($_POST['delete']){
-        $c = copy("php-login/commentsPancakes.txt", "php-login/copyMeatballs.txt");
+        $c = copy("php-login/commentPancakes.txt", "php-login/copyMeatballs.txt");
         $copy = fopen("php-login/copyPancakes.txt", "r") or die("Unable to open comments copy file!");
-        $readComments = fopen("php-login/commentsPancakes.txt", "a") or die("Unable to open empty comments file!");
-        W('php-login/commentsPancakes.txt', '');
+        $readComments = fopen("php-login/commentPancakes.txt", "a") or die("Unable to open empty comments file!");
+        W('php-login/commentPancakes.txt', '');
                      
         while(!feof($copy)) {
             $id = fgets($copy);
@@ -134,14 +134,15 @@
                                 $id = fgets($readComments);
                                 $u = fgets($readComments);
                                 $c = fgets($readComments);
-                                echo "<b><br>". $u. ":<br></b>";
-                                echo $c . "<br>";
+                                echo "<br><b>". $u. "</b>";
+                                echo $c;
+                                echo "<br>";
                                 if(trim($u) === $_SESSION['user']) {
-                                    echo("<form action='pancakes.php' method='post'>");
+                                    echo("<form class='deletebtn' action='pancakes.php' method='post'>");
                                     echo("<input type='hidden' name='delete' value='$id'/>");
-                                    echo("<input class='deletebtn' type='submit' value='Delete'/>");
+                                    echo("<input type='submit' value='Delete'/>");
                                     echo("</form>");
-                                } 
+                                }
                             }
                             fclose($readComments);
 

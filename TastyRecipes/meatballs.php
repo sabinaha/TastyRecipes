@@ -14,10 +14,10 @@
 
     #If a comment has been deleted
     if($_POST['delete']){
-        $c = copy("php-login/commentsMeatballs.txt", "php-login/copyMeatballs.txt");
+        $c = copy("php-login/commentMeatballs.txt", "php-login/copyMeatballs.txt");
         $copy = fopen("php-login/copyMeatballs.txt", "r") or die("Unable to open comments copy file!");
-        $readComments = fopen("php-login/commentsMeatballs.txt", "a") or die("Unable to open empty comments file!");
-        file_put_contents('php-login/commentsMeatballs.txt', '');
+        $readComments = fopen("php-login/commentMeatballs.txt", "a") or die("Unable to open empty comments file!");
+        file_put_contents('php-login/commentMeatballs.txt', '');
                      
         while(!feof($copy)) {
             $id = fgets($copy);
@@ -155,8 +155,9 @@
                                 $id = fgets($readComments);
                                 $u = fgets($readComments);
                                 $c = fgets($readComments);
-                                echo "<br><b>". $u. ":<br></b>";
-                                echo $c . "<br>";
+                                echo "<br><b>". $u. "</b>";
+                                echo $c;
+                                echo "<br>";
                                 if(trim($u) === $_SESSION['user']) {
                                     echo("<form class='deletebtn' action='meatballs.php' method='post'>");
                                     echo("<input type='hidden' name='delete' value='$id'/>");

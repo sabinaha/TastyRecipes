@@ -31,3 +31,6 @@ end
 Administratör
 admin
 end
+hej
+admin
+end
